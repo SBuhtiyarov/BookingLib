@@ -4,36 +4,37 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{DDE8EA12-40F0-438F-AFB1-6EA343C53D38}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{482FD766-1BAF-4F5B-A9E5-636A9E95E830}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BookingLib</RootNamespace>
-    <AssemblyName>BookingLib</AssemblyName>
+    <RootNamespace>UZProvider</RootNamespace>
+    <AssemblyName>UZProvider</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\ExternalLibs\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,11 +44,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="BaseHttpRequestExecutor.cs" />
+    <Compile Include="Domain\RequestConfig\UZAddPlaceRequestConfig.cs" />
+    <Compile Include="Domain\RequestConfig\UZBaseRequestConfig.cs" />
+    <Compile Include="Domain\RequestConfig\UZCoachesRequestConfig.cs" />
+    <Compile Include="Domain\RequestConfig\UZPlacesRequestConfig.cs" />
+    <Compile Include="Domain\RequestConfig\UZTrainsRequestConfig.cs" />
+    <Compile Include="Domain\UZCardSet.cs" />
+    <Compile Include="Domain\UZCoach.cs" />
+    <Compile Include="Domain\UZCoachSet.cs" />
+    <Compile Include="Domain\UZCoachType.cs" />
+    <Compile Include="Domain\UZPlaces.cs" />
+    <Compile Include="Domain\UZPlacesSet.cs" />
+    <Compile Include="Domain\UZSet.cs" />
+    <Compile Include="Domain\UZTrain.cs" />
+    <Compile Include="Domain\UZTrainSet.cs" />
+    <Compile Include="IHttpRequestExecutor.cs" />
+    <Compile Include="IToken.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
+    <Compile Include="UZBookingProvider.cs" />
+    <Compile Include="Domain\UZCard.cs" />
+    <Compile Include="UZContext.cs" />
+    <Compile Include="UZAPIConfig.cs" />
+    <Compile Include="UZHttpRequestExecutor.cs" />
+    <Compile Include="UZToken.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

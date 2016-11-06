@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingLib
+namespace UZProvider
 {
-    class Program
+    interface IToken
     {
-        static void Main(string[] args) {
-        }
+       string Value { get; }
+
+       void DecodeToken(string encodeString);
     }
 }
