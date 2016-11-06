@@ -55,20 +55,20 @@ namespace UZProvider
 
         #region Methods: Public
 
-        public async Task<UZTrainSet> GetTrains(UZTrainsRequestConfig request) {
+        public async Task<UZTrainSet> GetTrains(UZTrainsRequest request) {
             var response = await _requestExecutor.PostAsync(apiConfig.TrainsURI, SerializeRequest(request));
             //TODO: process deserialize error when no trains
             var trainSet = JsonConvert.DeserializeObject<UZTrainSet>(response);
             return trainSet;
         }
 
-        public async Task<UZCoachSet> GetCoaches(UZCoachesRequestConfig request) {
+        public async Task<UZCoachSet> GetCoaches(UZCoachesRequest request) {
             var response = await _requestExecutor.PostAsync(apiConfig.CoachesURI, SerializeRequest(request));
             var coachSet = JsonConvert.DeserializeObject<UZCoachSet>(response);
             return coachSet;
         }
 
-        public async Task<UZPlacesSet> GetPlaces(UZPlacesRequestConfig request) {
+        public async Task<UZPlacesSet> GetPlaces(UZPlacesRequest request) {
             var response = await _requestExecutor.PostAsync(apiConfig.PlacesURI, SerializeRequest(request));
             var placesSet = JsonConvert.DeserializeObject<UZPlacesSet>(response);
             return placesSet;

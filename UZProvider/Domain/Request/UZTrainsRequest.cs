@@ -1,13 +1,8 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UZProvider.Domain
 {
-    public class UZTrainsRequestConfig : UZBaseRequestConfig
+    public class UZTrainsRequest : UZBaseRequest
     {
         [JsonProperty(PropertyName = "station_from")]
         public string StationFromName;
