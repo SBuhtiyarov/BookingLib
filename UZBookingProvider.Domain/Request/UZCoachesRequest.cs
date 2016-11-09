@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace UZProvider.Domain
+namespace UZBookingProvider.Domain
 {
     public class UZCoachesRequest : UZBaseRequest
     {

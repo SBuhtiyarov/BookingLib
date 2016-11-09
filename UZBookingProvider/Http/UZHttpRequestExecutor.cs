@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Linq;
 
-namespace UZProvider
+namespace UZBookingProvider
 {
     class UZHttpRequestExecutor: BaseHttpRequestExecutor
     {

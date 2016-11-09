@@ -6,12 +6,12 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-using UZProvider;
-using UZProvider.Domain;
+using UZBookingProvider;
+using UZBookingProvider.Domain;
 
-namespace UZProvider
+namespace UZBookingProvider
 {
-    class UZContext: IDisposable
+    class UZDataContext: IDisposable
     {
         #region Fields: private
 
@@ -44,7 +44,7 @@ namespace UZProvider
 
         #region Constructors: Public
 
-        public UZContext(UZAPIConfig config) {
+        public UZDataContext(UZAPIConfig config) {
             apiConfig = config;
             var baseURI = string.Format("{0}/{1}", config.Host, config.Culture);
             _requestExecutor = new UZHttpRequestExecutor(baseURI, new UZToken());

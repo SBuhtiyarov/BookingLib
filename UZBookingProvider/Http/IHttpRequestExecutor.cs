@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
-namespace UZProvider
+namespace UZBookingProvider
 {
     interface IHttpRequestExecutor<T>: IDisposable
     {

@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace UZProvider
+namespace UZBookingProvider
 {
     public class UZAPIConfig
     {

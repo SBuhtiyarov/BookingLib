@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UZProvider.Domain
+namespace UZBookingProvider.Domain
 {
-    public class UZPlacesSet: UZSet
+    public class UZSet
     {
-        [JsonProperty(PropertyName = "value")]
-        public UZPlaces Places;
+        [JsonProperty(PropertyName = "error")]
+        public bool? IsError;
     }
 }

@@ -5,7 +5,9 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookingLib", "BookingLib\BookingLib.csproj", "{DDE8EA12-40F0-438F-AFB1-6EA343C53D38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UZProvider", "UZProvider\UZProvider.csproj", "{482FD766-1BAF-4F5B-A9E5-636A9E95E830}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UZBookingProvider", "UZBookingProvider\UZBookingProvider.csproj", "{482FD766-1BAF-4F5B-A9E5-636A9E95E830}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UZBookingProvider.Domain", "UZBookingProvider.Domain\UZBookingProvider.Domain.csproj", "{5423AD78-46B6-4888-8540-7B804224F7CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{482FD766-1BAF-4F5B-A9E5-636A9E95E830}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{482FD766-1BAF-4F5B-A9E5-636A9E95E830}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{482FD766-1BAF-4F5B-A9E5-636A9E95E830}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5423AD78-46B6-4888-8540-7B804224F7CD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5423AD78-46B6-4888-8540-7B804224F7CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5423AD78-46B6-4888-8540-7B804224F7CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5423AD78-46B6-4888-8540-7B804224F7CD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
