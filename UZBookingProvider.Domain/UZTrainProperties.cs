@@ -7,11 +7,9 @@ using System.Threading.Tasks;
 
 namespace UZBookingProvider.Domain
 {
-    public class UZPlacesSet: UZSet
+    public class UZTrainProperties
     {
-        public UZPlacesRequest OwnerRequest;
-
-        [JsonProperty(PropertyName = "value")]
-        public UZPlaces Places;
+        [JsonProperty(PropertyName = "date")]
+        public string DepartureDate;
     }
 }

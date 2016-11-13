@@ -9,6 +9,8 @@ namespace UZBookingProvider.Domain
 {
     public class UZTrainSet : UZSet
     {
+        public UZTrainsRequest OwnerRequest;
+
         [JsonProperty(PropertyName = "value")]
         public List<UZTrain> Trains;
     }

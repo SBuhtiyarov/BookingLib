@@ -13,9 +13,9 @@ namespace UZBookingProvider.Domain
         public string Title;
 
         [JsonProperty(PropertyName = "letter")]
-        public string Letter;
+        public string TypeLetter;
 
         [JsonProperty(PropertyName = "places")]
-        public int Places;
+        public int PlacesCount;
     }
 }

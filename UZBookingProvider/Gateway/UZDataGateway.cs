@@ -32,6 +32,7 @@ namespace UZBookingProvider
         private T DeserializeResponse<T>(string response) where T: UZSet, new() {
             try {
                 var jsonDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
+                //TODO: try to get value
                 if (Convert.ToBoolean(jsonDict["error"])) {
                     throw new Exception(jsonDict["value"] as string);
                 }
@@ -73,24 +74,28 @@ namespace UZBookingProvider
         public async Task<UZTrainSet> GetTrains(UZTrainsRequest request) {
             var response = await _requestExecutor.PostAsync(apiConfig.TrainsURI, SerializeRequest(request));
             var trainSet = DeserializeResponse<UZTrainSet>(response);
+            trainSet.OwnerRequest = request;
             return trainSet;
         }
 
         public async Task<UZCoachSet> GetCoaches(UZCoachesRequest request) {
             var response = await _requestExecutor.PostAsync(apiConfig.CoachesURI, SerializeRequest(request));
             var coachSet = DeserializeResponse<UZCoachSet>(response);
+            coachSet.OwnerRequest = request;
             return coachSet;
         }
 
         public async Task<UZPlacesSet> GetPlaces(UZPlacesRequest request) {
             var response = await _requestExecutor.PostAsync(apiConfig.PlacesURI, SerializeRequest(request));
             var placesSet = DeserializeResponse<UZPlacesSet>(response);
+            placesSet.OwnerRequest = request;
             return placesSet;
         }
 
         public async Task<UZCardSet> AddPlaceToCard(UZCardRequest request) {
             var response =  await _requestExecutor.PostAsync(apiConfig.CardURI, SerializeRequest(request));
             var cardSet = DeserializeResponse<UZCardSet>(response);
+            cardSet.OwnerRequest = request;
             cardSet.Cookies = _requestExecutor.Cookies;
             return cardSet;
         }

@@ -9,6 +9,8 @@ namespace UZBookingProvider.Domain
 {
     public class UZCardSet : UZSet
     {
+        public UZCardRequest OwnerRequest;
+
         public string Cookies;
 
         [JsonProperty(PropertyName = "value")]

@@ -13,11 +13,6 @@ namespace UZBookingProvider.DataAccess
         private Trip _road;
         private IUZDataGateway _gateway;
 
-        private UZTrainSet _trainSet;
-        private UZCoachSet _coachSet;
-        private UZPlacesSet _placesSet;
-        private UZCardSet _cardSet;
-
         private void Dispose(bool disposing) {
             if (!_disposed && disposing) {
                 if (_gateway != null) {
@@ -34,24 +29,54 @@ namespace UZBookingProvider.DataAccess
             _gateway = new UZDataGateway(apiConfig);
         }
 
+        //TODO: filtering from some date interval
         public async Task<UZTrainSet> GetTrains() {
-            var requestConfig = new UZTrainsRequest {
-                StationFromName = _road.StartingPointName,
+            var request = new UZTrainsRequest {
                 StationFromId = _road.StartingPointId,
-                StationTillName = _road.DestinationPointName,
                 StationTillId = _road.DestinationPointId,
-                DepartureDate = _road.DepartureDate
+                DepartureDate = _road.DepartureDate,
+                StationFromName = _road.StartingPointName,
+                StationTillName = _road.DestinationPointName,
             };
-            return await _gateway.GetTrains(requestConfig);
+            var trainSet = await _gateway.GetTrains(request);
+            return trainSet;
         }
 
-        public async Task<UZCoachSet> GetCoaches() {
-            var trainSet = await GetTrains();
-            return null;
+        public async Task<List<UZCoachSet>> GetCoaches(UZTrain train, CoachType coachType = CoachType.Any) {
+            var coaches = coachType != CoachType.Any
+                ? train.AvaliableCoaches.Where(it => it.TypeLetter.Equals(CoachTypes.Mapping[coachType]))
+                : train.AvaliableCoaches;
+            var coachSets = new List<UZCoachSet>();
+            foreach (var coach in coaches) {
+                var requestConfig = new UZCoachesRequest {
+                    StationFromId = _road.StartingPointId,
+                    StationTillId = _road.DestinationPointId,
+                    DepartureDate = train.From.DepartureDate,
+                    TrainNumber = train.Number,
+                    CoachType = coach.TypeLetter
+                };
+                var coachesSet = await _gateway.GetCoaches(requestConfig);
+                coachSets.Add(coachesSet);
+            }
+            return coachSets;
         }
 
-        public async Task<UZPlacesSet> GetPlaces() {
-            throw new NotImplementedException();
+        public async Task<List<UZPlacesSet>> GetPlaces(UZCoachSet coachSet) {
+            var placesSets = new List<UZPlacesSet>();
+            foreach (var coach in coachSet.Coaches) {
+                var requestConfig = new UZPlacesRequest {
+                    StationFromId = _road.StartingPointId,
+                    StationTillId = _road.DestinationPointId,
+                    DepartureDate = coachSet.OwnerRequest.DepartureDate,
+                    TrainNumber = coachSet.OwnerRequest.TrainNumber,
+                    CoachNumber = coach.Number,
+                    CoachClass = coach.CoachClass,
+                    CoachTypeId = coach.CoachType
+                };
+                var placeSet = await _gateway.GetPlaces(requestConfig);
+                placesSets.Add(placeSet);
+            }
+            return placesSets;
         }
 
         public void Dispose() {

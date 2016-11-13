@@ -9,6 +9,8 @@ namespace UZBookingProvider.Domain
 {
     public class UZCoachSet : UZSet
     {
+        public UZCoachesRequest OwnerRequest;
+
         [JsonProperty(PropertyName = "coach_type_id")]
         public string CoachTypeId;
 

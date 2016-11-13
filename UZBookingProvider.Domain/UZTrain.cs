@@ -21,6 +21,9 @@ namespace UZBookingProvider.Domain
         [JsonProperty(PropertyName = "travel_time")]
         public string TravelTime;
 
+        [JsonProperty(PropertyName = "from")]
+        public UZTrainProperties From;
+
         [JsonProperty(PropertyName = "types")]
         public List<UZCoachType> AvaliableCoaches;
     }
