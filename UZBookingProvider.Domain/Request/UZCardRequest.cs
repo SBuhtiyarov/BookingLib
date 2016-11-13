@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UZBookingProvider.Domain
 {
-    public class UZAddPlaceRequestConfig
+    public class UZCardRequest
     {
         [JsonProperty(PropertyName = "code_station_from")]
         public string StationFromId;

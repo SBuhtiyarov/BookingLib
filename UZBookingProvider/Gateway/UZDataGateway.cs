@@ -11,9 +11,9 @@ using UZBookingProvider.Domain;
 
 namespace UZBookingProvider
 {
-    class UZDataContext: IDisposable
+    class UZDataGateway: IUZDataGateway, IDisposable
     {
-        #region Fields: private
+        #region Fields: Private
 
         private bool _disposed = false;
         private IHttpRequestExecutor<FormUrlEncodedContent> _requestExecutor;
@@ -29,10 +29,25 @@ namespace UZBookingProvider
             return new FormUrlEncodedContent(jsonDict.ToArray());
         }
 
+        private T DeserializeResponse<T>(string response) where T: UZSet, new() {
+            try {
+                var jsonDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
+                if (Convert.ToBoolean(jsonDict["error"])) {
+                    throw new Exception(jsonDict["value"] as string);
+                }
+                return JsonConvert.DeserializeObject<T>(response);
+            } catch (Exception e) {
+                var errorResponse = new T();
+                errorResponse.ErrorMessage = e.Message;
+                errorResponse.IsError = true;
+                return errorResponse;
+            }
+        }
+
         private void Dispose(bool disposing) {
             if (!_disposed && disposing) {
                 if (_requestExecutor != null) {
-                    var re = _requestExecutor;
+                    var re = (IDisposable)_requestExecutor;
                     _requestExecutor = null;
                     re.Dispose();
                 }
@@ -44,7 +59,7 @@ namespace UZBookingProvider
 
         #region Constructors: Public
 
-        public UZDataContext(UZAPIConfig config) {
+        public UZDataGateway(UZAPIConfig config) {
             apiConfig = config;
             var baseURI = string.Format("{0}/{1}", config.Host, config.Culture);
             _requestExecutor = new UZHttpRequestExecutor(baseURI, new UZToken());
@@ -57,26 +72,25 @@ namespace UZBookingProvider
 
         public async Task<UZTrainSet> GetTrains(UZTrainsRequest request) {
             var response = await _requestExecutor.PostAsync(apiConfig.TrainsURI, SerializeRequest(request));
-            //TODO: process deserialize error when no trains
-            var trainSet = JsonConvert.DeserializeObject<UZTrainSet>(response);
+            var trainSet = DeserializeResponse<UZTrainSet>(response);
             return trainSet;
         }
 
         public async Task<UZCoachSet> GetCoaches(UZCoachesRequest request) {
             var response = await _requestExecutor.PostAsync(apiConfig.CoachesURI, SerializeRequest(request));
-            var coachSet = JsonConvert.DeserializeObject<UZCoachSet>(response);
+            var coachSet = DeserializeResponse<UZCoachSet>(response);
             return coachSet;
         }
 
         public async Task<UZPlacesSet> GetPlaces(UZPlacesRequest request) {
             var response = await _requestExecutor.PostAsync(apiConfig.PlacesURI, SerializeRequest(request));
-            var placesSet = JsonConvert.DeserializeObject<UZPlacesSet>(response);
+            var placesSet = DeserializeResponse<UZPlacesSet>(response);
             return placesSet;
         }
 
-        public async Task<UZCardSet> AddPlaceToCard(UZAddPlaceRequestConfig request) {
+        public async Task<UZCardSet> AddPlaceToCard(UZCardRequest request) {
             var response =  await _requestExecutor.PostAsync(apiConfig.CardURI, SerializeRequest(request));
-            var cardSet = JsonConvert.DeserializeObject<UZCardSet>(response);
+            var cardSet = DeserializeResponse<UZCardSet>(response);
             cardSet.Cookies = _requestExecutor.Cookies;
             return cardSet;
         }

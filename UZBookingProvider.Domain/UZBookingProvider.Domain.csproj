@@ -48,7 +48,7 @@
     <Compile Include="Request\UZCoachesRequest.cs" />
     <Compile Include="Request\UZPlacesRequest.cs" />
     <Compile Include="Request\UZTrainsRequest.cs" />
-    <Compile Include="UZAddPlaceRequestConfig.cs" />
+    <Compile Include="Request\UZCardRequest.cs" />
     <Compile Include="UZCard.cs" />
     <Compile Include="UZCardSet.cs" />
     <Compile Include="UZCoach.cs" />

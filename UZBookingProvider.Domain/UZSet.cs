@@ -9,7 +9,8 @@ namespace UZBookingProvider.Domain
 {
     public class UZSet
     {
-        [JsonProperty(PropertyName = "error")]
-        public bool? IsError;
+        public bool IsError;
+
+        public string ErrorMessage;
     }
 }

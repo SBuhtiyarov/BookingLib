@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace UZBookingProvider
 {
-    class BaseHttpRequestExecutor : IHttpRequestExecutor<FormUrlEncodedContent>
+    class BaseHttpRequestExecutor : IHttpRequestExecutor<FormUrlEncodedContent>, IDisposable
     {
         #region Fields: Protected
 

@@ -22,6 +22,6 @@ namespace UZBookingProvider.Domain
         public string TravelTime;
 
         [JsonProperty(PropertyName = "types")]
-        public List<UZCoachType> AvaliableCoachTypes;
+        public List<UZCoachType> AvaliableCoaches;
     }
 }

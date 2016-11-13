@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace UZBookingProvider
 {
-    interface IHttpRequestExecutor<T>: IDisposable
+    interface IHttpRequestExecutor<T>
     {
         string Cookies { get; }
 
