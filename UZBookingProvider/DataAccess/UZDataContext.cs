@@ -29,7 +29,7 @@ namespace UZBookingProvider.DataAccess
             _gateway = new UZDataGateway(apiConfig);
         }
 
-        //TODO: filtering from some date interval
+        //TODO: filtering from date interval
         public async Task<UZTrainSet> GetTrains() {
             var request = new UZTrainsRequest {
                 StationFromId = _road.StartingPointId,
@@ -61,6 +61,7 @@ namespace UZBookingProvider.DataAccess
             return coachSets;
         }
 
+        //TODO: filtering from price
         public async Task<List<UZPlacesSet>> GetPlaces(UZCoachSet coachSet) {
             var placesSets = new List<UZPlacesSet>();
             foreach (var coach in coachSet.Coaches) {
@@ -71,14 +72,13 @@ namespace UZBookingProvider.DataAccess
                     TrainNumber = coachSet.OwnerRequest.TrainNumber,
                     CoachNumber = coach.Number,
                     CoachClass = coach.CoachClass,
-                    CoachTypeId = coach.CoachType
+                    CoachTypeId = coach.SchemeId
                 };
                 var placeSet = await _gateway.GetPlaces(requestConfig);
                 placesSets.Add(placeSet);
             }
             return placesSets;
         }
-
 
         public void Dispose() {
             Dispose(true);
