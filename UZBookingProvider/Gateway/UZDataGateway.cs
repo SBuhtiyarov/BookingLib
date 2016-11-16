@@ -32,8 +32,8 @@ namespace UZBookingProvider
         private T DeserializeResponse<T>(string response) where T: UZSet, new() {
             try {
                 var jsonDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
-                //TODO: try to get value
-                if (Convert.ToBoolean(jsonDict["error"])) {
+                object error;
+                if (jsonDict.TryGetValue("error", out error) && Convert.ToBoolean(error)) {
                     throw new Exception(jsonDict["value"] as string);
                 }
                 return JsonConvert.DeserializeObject<T>(response);
