@@ -29,6 +29,6 @@ namespace UZBookingProvider
                 {CoachType.Seat1, "С1" },
                 {CoachType.Seat2, "С2" }
             };
-        }     
+        }  
     }
 }

@@ -7,28 +7,41 @@ using UZBookingProvider.Domain;
 
 namespace UZBookingProvider.DataAccess
 {
-    class UZBookingMapper: IUZBookingMapper
+    class UZRequestFactory: IUZRequestFactory
     {
-        private Trip _road;
+        private Ticket _ticket;
 
-        public UZBookingMapper(Trip road) {
-            _road = road;
+        private string GetCoachLetter(string id) {
+            switch(id) {
+                case "1":
+                    return "Л";
+                case "3":
+                    return "К";
+                case "4":
+                    return "П";
+                default:
+                    return "С";
+            }
+        }
+
+        public UZRequestFactory(Ticket ticket) {
+            _ticket = ticket;
         }
 
         public UZTrainsRequest GetTrainRequest() {
             return new UZTrainsRequest {
-                StationFromId = _road.StartingPointId,
-                StationTillId = _road.DestinationPointId,
-                DepartureDate = _road.DepartureDate,
-                StationFromName = _road.StartingPointName,
-                StationTillName = _road.DestinationPointName,
+                StationFromId = _ticket.StartingPointId,
+                StationTillId = _ticket.DestinationPointId,
+                DepartureDate = _ticket.DepartureDate,
+                StationFromName = _ticket.StartingPointName,
+                StationTillName = _ticket.DestinationPointName,
             };
         }
 
         public UZCoachesRequest GetCoachesRequest(UZTrain train, UZCoachType coach) {
             return new UZCoachesRequest {
-                StationFromId = _road.StartingPointId,
-                StationTillId = _road.DestinationPointId,
+                StationFromId = _ticket.StartingPointId,
+                StationTillId = _ticket.DestinationPointId,
                 DepartureDate = train.From.DepartureDate,
                 TrainNumber = train.Number,
                 CoachType = coach.TypeLetter
@@ -37,8 +50,8 @@ namespace UZBookingProvider.DataAccess
 
         public UZPlacesRequest GetPlacesRequest(UZCoachSet coachSet, UZCoach coach) {
             return new UZPlacesRequest {
-                StationFromId = _road.StartingPointId,
-                StationTillId = _road.DestinationPointId,
+                StationFromId = _ticket.StartingPointId,
+                StationTillId = _ticket.DestinationPointId,
                 DepartureDate = coachSet.OwnerRequest.DepartureDate,
                 TrainNumber = coachSet.OwnerRequest.TrainNumber,
                 CoachNumber = coach.Number,
@@ -49,16 +62,17 @@ namespace UZBookingProvider.DataAccess
 
         public UZCardRequest GetCardRequest(int placeNumber, UZPlacesSet placesSet) {
             return new UZCardRequest {
-                StationFromId = _road.StartingPointId,
-                StationTillId = _road.DestinationPointId,
+                StationFromId = _ticket.StartingPointId,
+                StationTillId = _ticket.DestinationPointId,
                 TrainNumber = placesSet.OwnerRequest.TrainNumber,
-                DepartureDate = placesSet.OwnerRequest.DepartureDate,
+                DepartureDate = DateTime.Parse(_ticket.DepartureDate).ToString("yyyy-MM-dd"),
                 Charline = placesSet.Places.AvaliablePlaceNumbers.First().Key,
                 CoachNumber = placesSet.OwnerRequest.CoachNumber,
                 CoachClass = placesSet.OwnerRequest.CoachClass,
-                CoachType = placesSet.OwnerRequest.CoachTypeId,
-                FirstName = _road.FirstName,
-                LastName = _road.LastName,
+                CoachType = GetCoachLetter(placesSet.OwnerRequest.CoachTypeId),
+                FirstName = _ticket.FirstName,
+                LastName = _ticket.LastName,
+                IsTransp = "0",
                 IsBedding = "1",
                 PlaceNumber = placeNumber
             };

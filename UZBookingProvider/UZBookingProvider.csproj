@@ -48,9 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoachType.cs" />
-    <Compile Include="DataAccess\IUZBookingMapper.cs" />
+    <Compile Include="DataAccess\IUZRequestFactory.cs" />
     <Compile Include="DataAccess\Trip.cs" />
-    <Compile Include="DataAccess\UZBookingMapper.cs" />
+    <Compile Include="DataAccess\UZRequestFactory.cs" />
     <Compile Include="DataAccess\UZDataContext.cs" />
     <Compile Include="Http\BaseHttpRequestExecutor.cs" />
     <Compile Include="Http\IHttpRequestExecutor.cs" />

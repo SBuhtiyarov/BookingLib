@@ -10,9 +10,9 @@ namespace UZBookingProvider
     {
         Dictionary<CoachType, int> GetAvaliablePlacesCount(CoachType coachType);
 
-        Dictionary<CoachType, int[]> GetAvaliablePlaces(CoachType coachType);
+        Task<Dictionary<CoachType, int[]>> GetAvaliablePlaces(CoachType coachType);
 
         //for returned cookies
-        string AddPlaceToCard(int place);
+        Task<string> AddPlaceToCard(int place);
     }
 }

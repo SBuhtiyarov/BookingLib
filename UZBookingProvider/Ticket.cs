@@ -1,6 +1,6 @@
 ﻿namespace UZBookingProvider
 {
-    public class Trip
+    public class Ticket
     {
         public string StartingPointId { get; set; }
 

@@ -34,7 +34,7 @@ namespace UZBookingProvider
                 var jsonDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(response);
                 object error;
                 if (jsonDict.TryGetValue("error", out error) && Convert.ToBoolean(error)) {
-                    throw new Exception(jsonDict["value"] as string);
+                    throw new Exception(jsonDict["value"].ToString());
                 }
                 return JsonConvert.DeserializeObject<T>(response);
             } catch (Exception e) {
