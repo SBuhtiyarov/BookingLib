@@ -48,7 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoachType.cs" />
+    <Compile Include="DataAccess\IUZBookingMapper.cs" />
     <Compile Include="DataAccess\Trip.cs" />
+    <Compile Include="DataAccess\UZBookingMapper.cs" />
     <Compile Include="DataAccess\UZDataContext.cs" />
     <Compile Include="Http\BaseHttpRequestExecutor.cs" />
     <Compile Include="Http\IHttpRequestExecutor.cs" />
@@ -58,7 +60,7 @@
     <Compile Include="UZBookingProvider.cs" />
     <Compile Include="DataAccess\UZBookingRepository.cs" />
     <Compile Include="Gateway\UZDataGateway.cs" />
-    <Compile Include="UZAPIConfig.cs" />
+    <Compile Include="Gateway\UZAPIConfig.cs" />
     <Compile Include="Http\UZHttpRequestExecutor.cs" />
     <Compile Include="Http\Security\UZToken.cs" />
     <Compile Include="Gateway\IUZDataGateway.cs" />

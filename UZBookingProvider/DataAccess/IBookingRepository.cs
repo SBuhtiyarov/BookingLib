@@ -13,6 +13,6 @@ namespace UZBookingProvider
         Dictionary<CoachType, int[]> GetAvaliablePlaces(CoachType coachType);
 
         //for returned cookies
-        string AddPlaceToCard(int place, CoachType coachType);
+        string AddPlaceToCard(int place);
     }
 }

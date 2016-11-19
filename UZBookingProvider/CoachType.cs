@@ -8,9 +8,9 @@ namespace UZBookingProvider
 {
     enum CoachType
     {
-        Platzkart,
-        Coupe,
-        Lux,
+        Platzkart = 4,
+        Coupe = 3,
+        Lux = 1,
         Seat1,
         Seat2,
         Any = Platzkart | Coupe | Lux | Seat1 | Seat2

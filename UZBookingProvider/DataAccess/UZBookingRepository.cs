@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UZBookingProvider.DataAccess;
+using UZBookingProvider.Domain;
 
 namespace UZBookingProvider
 {
@@ -12,6 +13,8 @@ namespace UZBookingProvider
         private bool _disposed = false;
         //TODO: interface
         private UZDataContext _dataContext;
+
+        private List<UZPlacesSet> _placesSets;
 
         private void Dispose(bool disposing) {
             if (!_disposed && disposing) {
@@ -37,8 +40,11 @@ namespace UZBookingProvider
             throw new NotImplementedException();
         }
 
-        public string AddPlaceToCard(int place, CoachType coachType) {
-            throw new NotImplementedException();
+        public string AddPlaceToCard(int place) {
+            _placesSets.Where(set => 
+                set.Places.AvaliablePlaceNumbers.Values.Where(placeArray => placeArray.Contains(place)).Any());
+            
+            return "";
         }
 
         public void Dispose() {

@@ -9,17 +9,17 @@ namespace UZBookingProvider.Domain
 {
     public class UZCardRequest
     {
-        [JsonProperty(PropertyName = "code_station_from")]
+        [JsonProperty(PropertyName = "from")]
         public string StationFromId;
 
-        [JsonProperty(PropertyName = "code_station_to")]
+        [JsonProperty(PropertyName = "to")]
         public string StationTillId;
-
-        [JsonProperty(PropertyName = "date")]
-        public string DepartureDate;
 
         [JsonProperty(PropertyName = "train")]
         public string TrainNumber;
+
+        [JsonProperty(PropertyName = "date")]
+        public string DepartureDate;    
 
         [JsonProperty(PropertyName = "round_trip")]
         public int RoundTrip = 0;
@@ -27,17 +27,17 @@ namespace UZBookingProvider.Domain
         [JsonProperty(PropertyName = "places[0][ord]")]
         public int Order;
 
-        [JsonProperty(PropertyName = "places[0][coach_num]")]
+        [JsonProperty(PropertyName = "places[0][charline]")]
+        public string Charline;
+
+        [JsonProperty(PropertyName = "places[0][wagon_num]")]
         public string CoachNumber;
 
-        [JsonProperty(PropertyName = "places[0][coach_class]")]
+        [JsonProperty(PropertyName = "places[0][wagon_class]")]
         public string CoachClass;
 
-        [JsonProperty(PropertyName = "places[0][coach_type_id]")]
-        public string CoachTypeId;
-
-        [JsonProperty(PropertyName = "places[0][place_num]")]
-        public int PlaceNumber;
+        [JsonProperty(PropertyName = "places[0][wagon_type]")]
+        public string CoachType;
 
         [JsonProperty(PropertyName = "places[0][firstname]")]
         public string FirstName;
@@ -54,10 +54,13 @@ namespace UZBookingProvider.Domain
         [JsonProperty(PropertyName = "places[0][stud]")]
         public string IsStud;
 
-        [JsonProperty(PropertyName = "places[0][transp]")]
+        [JsonProperty(PropertyName = "places[0][transportation]")]
         public string IsTransp;
 
         [JsonProperty(PropertyName = "places[0][reserve]")]
         public int IsReserve;
+
+        [JsonProperty(PropertyName = "places[0][place_num]")]
+        public int PlaceNumber;
     }
 }
