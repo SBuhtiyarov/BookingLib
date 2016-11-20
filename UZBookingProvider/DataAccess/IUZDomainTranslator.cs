@@ -7,7 +7,7 @@ using UZBookingProvider.Domain;
 
 namespace UZBookingProvider.DataAccess
 {
-    interface IUZRequestFactory
+    interface IUZDomainTranslator
     {
         UZTrainsRequest GetTrainRequest();
 

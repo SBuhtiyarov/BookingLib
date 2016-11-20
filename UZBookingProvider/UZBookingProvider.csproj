@@ -48,9 +48,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoachType.cs" />
-    <Compile Include="DataAccess\IUZRequestFactory.cs" />
-    <Compile Include="DataAccess\Trip.cs" />
-    <Compile Include="DataAccess\UZRequestFactory.cs" />
+    <Compile Include="DataAccess\IUZDomainTranslator.cs" />
+    <Compile Include="Ticket.cs" />
+    <Compile Include="DataAccess\UZDomainTranslator.cs" />
     <Compile Include="DataAccess\UZDataContext.cs" />
     <Compile Include="Http\BaseHttpRequestExecutor.cs" />
     <Compile Include="Http\IHttpRequestExecutor.cs" />
@@ -64,6 +64,7 @@
     <Compile Include="Http\UZHttpRequestExecutor.cs" />
     <Compile Include="Http\Security\UZToken.cs" />
     <Compile Include="Gateway\IUZDataGateway.cs" />
+    <Compile Include="UZCoachTypeMapper.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

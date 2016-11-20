@@ -38,7 +38,7 @@ namespace UZBookingProvider
             throw new NotImplementedException();
         }
 
-        public async Task<Dictionary<CoachType, int[]>> GetAvaliablePlaces(CoachType coachType = CoachType.Any) {
+        public async Task<Dictionary<CoachType, IEnumerable<int>>> GetAvaliablePlaces(CoachType coachType = CoachType.Any) {
             var trainSet = await _dataContext.GetTrains();
             var coachSets = new List<UZCoachSet>();
             foreach (var train in trainSet.Trains) {
@@ -49,13 +49,13 @@ namespace UZBookingProvider
                 var placesSetPart = await _dataContext.GetPlaces(coachSet);
                 _placesSets.AddRange(placesSetPart);
             }
-            //TODO:
-            /*var placesPerCoach = _placesSets.Select(placeSet => 
-                new KeyValuePair<CoachType, int[]> {
-                        placeSet.
-                });
-            */
-            return null;
+            //TODO: Any
+            var placesPerCoach = _placesSets.GroupBy(set => set.OwnerRequest.CoachTypeId)
+                .ToDictionary(gset => UZCoachTypeMapper.GetCoachType(gset.Key), gset => gset
+                    .SelectMany(set => set.Places.AvaliablePlaceNumbers.Values
+                        .SelectMany(placeArray => placeArray))
+                    .Distinct());
+            return placesPerCoach;
         }
 
         public async Task<string> AddPlaceToCard(int place) {

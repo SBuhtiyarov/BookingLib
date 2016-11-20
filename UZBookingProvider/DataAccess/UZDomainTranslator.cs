@@ -7,26 +7,19 @@ using UZBookingProvider.Domain;
 
 namespace UZBookingProvider.DataAccess
 {
-    class UZRequestFactory: IUZRequestFactory
+    class UZDomainTranslator: IUZDomainTranslator
     {
         private Ticket _ticket;
 
-        private string GetCoachLetter(string id) {
-            switch(id) {
-                case "1":
-                    return "Л";
-                case "3":
-                    return "К";
-                case "4":
-                    return "П";
-                default:
-                    return "С";
-            }
-        }
+        #region Constructors: Public
 
-        public UZRequestFactory(Ticket ticket) {
+        public UZDomainTranslator(Ticket ticket) {
             _ticket = ticket;
         }
+
+        #endregion
+
+        #region Methods: Public
 
         public UZTrainsRequest GetTrainRequest() {
             return new UZTrainsRequest {
@@ -69,7 +62,7 @@ namespace UZBookingProvider.DataAccess
                 Charline = placesSet.Places.AvaliablePlaceNumbers.First().Key,
                 CoachNumber = placesSet.OwnerRequest.CoachNumber,
                 CoachClass = placesSet.OwnerRequest.CoachClass,
-                CoachType = GetCoachLetter(placesSet.OwnerRequest.CoachTypeId),
+                CoachType = UZCoachTypeMapper.GetCoachLetter(placesSet.OwnerRequest.CoachTypeId),
                 FirstName = _ticket.FirstName,
                 LastName = _ticket.LastName,
                 IsTransp = "0",
@@ -77,6 +70,8 @@ namespace UZBookingProvider.DataAccess
                 PlaceNumber = placeNumber
             };
         }
+
+        #endregion
 
     }
 }

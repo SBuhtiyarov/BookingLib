@@ -10,7 +10,7 @@ namespace UZBookingProvider
     {
         Dictionary<CoachType, int> GetAvaliablePlacesCount(CoachType coachType);
 
-        Task<Dictionary<CoachType, int[]>> GetAvaliablePlaces(CoachType coachType);
+        Task<Dictionary<CoachType, IEnumerable<int>>> GetAvaliablePlaces(CoachType coachType);
 
         //for returned cookies
         Task<string> AddPlaceToCard(int place);
