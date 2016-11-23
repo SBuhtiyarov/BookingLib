@@ -57,6 +57,8 @@
     <Compile Include="UZPlaces.cs" />
     <Compile Include="UZPlacesSet.cs" />
     <Compile Include="UZSet.cs" />
+    <Compile Include="UZStation.cs" />
+    <Compile Include="UZStationSet.cs" />
     <Compile Include="UZTrain.cs" />
     <Compile Include="UZTrainSet.cs" />
     <Compile Include="UZTrainProperties.cs" />

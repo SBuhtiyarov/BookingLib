@@ -9,18 +9,18 @@ namespace UZBookingProvider.Gateway
 {
     class UZDataGateway: IUZDataGateway, IDisposable
     {
-        #region Fields: Private
+        #region Fields: Protected
 
-        private bool _disposed = false;
-        private IHttpRequestExecutor<FormUrlEncodedContent> _requestExecutor;
-        private UZAPIConfig _apiConfig;
-        private IUZSerializer _serializer;
+        protected bool _disposed = false;
+        protected IHttpRequestExecutor<FormUrlEncodedContent> _requestExecutor;
+        protected UZAPIConfig _apiConfig;
+        protected IUZSerializer _serializer;
 
         #endregion
 
-        #region Methods: Private
+        #region Methods: Protected
 
-        private void Dispose(bool disposing) {
+        protected void Dispose(bool disposing) {
             if (!_disposed && disposing) {
                 if (_requestExecutor != null) {
                     var re = (IDisposable)_requestExecutor;
@@ -35,17 +35,29 @@ namespace UZBookingProvider.Gateway
 
         #region Constructors: Public
 
-        public UZDataGateway(UZAPIConfig config) {
-            _apiConfig = config;
-            _serializer = new UZSerializer();
-            var baseURI = string.Format("{0}/{1}", config.Host, config.Culture);
+        public UZDataGateway(UZAPIConfig config)
+            : this(config, new UZSerializer()) {
+            //TODO: current culture realization dont work
+            var baseURI = string.Format("{0}/{1}", _apiConfig.Host, _apiConfig.Culture);
             _requestExecutor = new UZHttpRequestExecutor(baseURI, new UZToken());
             _requestExecutor.InitConnection();
-       } 
+       }
+
+        public UZDataGateway(UZAPIConfig config, IUZSerializer serializer) {
+            _apiConfig = config;
+            _serializer = serializer;
+        }
 
         #endregion
 
-        #region Methods: Public
+            #region Methods: Public
+
+        public async Task<UZStationSet> GetStations(string request) {
+            var requestURI = string.Format("{0}{1}", _apiConfig.StationsURI, request);
+            var response = await _requestExecutor.GetAsync(requestURI);
+            var stationSet = _serializer.DeserializeResponse<UZStationSet>(response);
+            return stationSet;
+        }
 
         public async Task<UZTrainSet> GetTrains(UZTrainsRequest request) {
             var serializedRequest = _serializer.SerializeRequest(request);

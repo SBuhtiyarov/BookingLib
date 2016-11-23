@@ -50,7 +50,9 @@
     <Compile Include="CoachType.cs" />
     <Compile Include="DataAccess\IUZDataContext.cs" />
     <Compile Include="DataAccess\IUZDomainTranslator.cs" />
+    <Compile Include="Gateway\IUZDataGatewaySlim.cs" />
     <Compile Include="Gateway\IUZSerializer.cs" />
+    <Compile Include="Gateway\UZDataGatewaySlim.cs" />
     <Compile Include="Gateway\UZSerializer.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="DataAccess\UZDomainTranslator.cs" />
