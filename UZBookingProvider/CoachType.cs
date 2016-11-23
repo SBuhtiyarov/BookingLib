@@ -15,6 +15,6 @@ namespace UZBookingProvider
         Seat1,
         Seat2,
         Seat = Seat1 | Seat2,
-        Any = Platzkart | Coupe | Lux | Seat1 | Seat2
+        Any
     }
 }

@@ -29,7 +29,7 @@ namespace UZBookingProvider
         }
 
         public UZBookingRepository(Ticket ticket, UZAPIConfig apiConfig) {
-            //TODO: maybe possible to instanse context whith Trip and forwart it to repository?
+            //TODO: maybe possible to instanse context whith Trip and forward it to repository?
             _dataContext = new UZDataContext(ticket, apiConfig);
             _placesSets = new List<UZPlacesSet>();
         }

@@ -49,6 +49,8 @@
   <ItemGroup>
     <Compile Include="CoachType.cs" />
     <Compile Include="DataAccess\IUZDomainTranslator.cs" />
+    <Compile Include="Gateway\IUZSerializer.cs" />
+    <Compile Include="Gateway\UZSerializer.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="DataAccess\UZDomainTranslator.cs" />
     <Compile Include="DataAccess\UZDataContext.cs" />
