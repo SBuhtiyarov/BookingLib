@@ -7,11 +7,17 @@ using UZBookingProvider.Gateway;
 
 namespace UZBookingProvider.DataAccess
 {
-    class UZDataContext: IDisposable
+    class UZDataContext: IUZDataContext, IDisposable
     {
+        #region Fields: Private
+
         private bool _disposed = false;
         private IUZDomainTranslator _translator;
         private IUZDataGateway _gateway;
+
+        #endregion
+
+        #region Methods: Private
 
         private void Dispose(bool disposing) {
             if (!_disposed && disposing) {
@@ -24,10 +30,18 @@ namespace UZBookingProvider.DataAccess
             }
         }
 
+        #endregion
+
+        #region Constructors: Public
+
         public UZDataContext(Ticket ticket, UZAPIConfig apiConfig) {
             _translator = new UZDomainTranslator(ticket);
             _gateway = new UZDataGateway(apiConfig);
         }
+
+        #endregion
+
+        #region Methods: Public
 
         //TODO: filtering from date interval
         public async Task<UZTrainSet> GetTrains() {
@@ -70,5 +84,7 @@ namespace UZBookingProvider.DataAccess
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        #endregion
     }
 }

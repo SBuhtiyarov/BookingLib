@@ -1,10 +1,8 @@
-﻿using System.Diagnostics;
-using System.Net.Http.Headers;
-using System.Text.RegularExpressions;
+﻿using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using System.Linq;
+using UZBookingProvider.Http.Security;
 
-namespace UZBookingProvider
+namespace UZBookingProvider.Http
 {
     class UZHttpRequestExecutor: BaseHttpRequestExecutor
     {

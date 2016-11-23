@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace UZBookingProvider
+namespace UZBookingProvider.DataAccess
 {
     interface IBookingRepository
     {
         Dictionary<CoachType, int> GetAvaliablePlacesCount(CoachType coachType);
 
         Task<Dictionary<CoachType, IEnumerable<int>>> GetAvaliablePlaces(CoachType coachType);
-
-        //for returned cookies
+        
         Task<string> AddPlaceToCard(int place);
     }
 }

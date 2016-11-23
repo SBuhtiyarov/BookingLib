@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 
-namespace UZBookingProvider
+namespace UZBookingProvider.Http
 {
     class BaseHttpRequestExecutor : IHttpRequestExecutor<FormUrlEncodedContent>, IDisposable
     {
@@ -17,6 +16,10 @@ namespace UZBookingProvider
         protected HttpClientHandler _httpClientHandler;
         protected readonly string _serviceBaseAddress;
         protected readonly string _mediaType;
+
+        #endregion
+
+        #region Properties: Public
 
         public string Cookies {
             get {

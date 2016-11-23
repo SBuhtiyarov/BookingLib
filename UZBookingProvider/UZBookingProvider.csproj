@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoachType.cs" />
+    <Compile Include="DataAccess\IUZDataContext.cs" />
     <Compile Include="DataAccess\IUZDomainTranslator.cs" />
     <Compile Include="Gateway\IUZSerializer.cs" />
     <Compile Include="Gateway\UZSerializer.cs" />

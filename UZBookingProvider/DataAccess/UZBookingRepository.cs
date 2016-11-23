@@ -1,21 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using UZBookingProvider.DataAccess;
 using UZBookingProvider.Domain;
+using UZBookingProvider.Gateway;
 
-namespace UZBookingProvider
+namespace UZBookingProvider.DataAccess
 {
     class UZBookingRepository: IBookingRepository, IDisposable
     {
-        private bool _disposed = false;
+        #region Fields: Private
 
-        //TODO: interface
-        private UZDataContext _dataContext;
+        private bool _disposed = false;
+        
+        private IUZDataContext _dataContext;
 
         private List<UZPlacesSet> _placesSets;
+
+        #endregion
+
+        #region Methods: Private
 
         private void Dispose(bool disposing) {
             if (!_disposed && disposing) {
@@ -27,6 +31,10 @@ namespace UZBookingProvider
                 _disposed = true;
             }
         }
+
+        #endregion
+
+        #region Methods: Public
 
         public UZBookingRepository(Ticket ticket, UZAPIConfig apiConfig) {
             //TODO: maybe possible to instanse context whith Trip and forward it to repository?
@@ -49,7 +57,6 @@ namespace UZBookingProvider
                 var placesSetPart = await _dataContext.GetPlaces(coachSet);
                 _placesSets.AddRange(placesSetPart);
             }
-            //TODO: Any
             var placesPerCoach = _placesSets.GroupBy(set => set.OwnerRequest.CoachTypeId)
                 .ToDictionary(gset => UZCoachTypeMapper.GetCoachType(gset.Key), gset => gset
                     .SelectMany(set => set.Places.AvaliablePlaceNumbers.Values
@@ -70,5 +77,7 @@ namespace UZBookingProvider
             Dispose(true);
             GC.SuppressFinalize(this);
         }
+
+        #endregion
     }
 }

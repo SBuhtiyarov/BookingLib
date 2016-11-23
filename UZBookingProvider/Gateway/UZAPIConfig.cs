@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace UZBookingProvider
+namespace UZBookingProvider.Gateway
 {
     public class UZAPIConfig
     {
@@ -54,6 +54,6 @@ namespace UZBookingProvider
             CardURI = cardURI;
         }
 
-            #endregion
+        #endregion
     }
 }
