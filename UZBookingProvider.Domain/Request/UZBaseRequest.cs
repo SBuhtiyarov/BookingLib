@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace UZBookingProvider.Domain
+namespace CITR.UZBookingProvider.Domain
 {											
     public class UZBaseRequest
     {

@@ -1,4 +1,4 @@
-﻿namespace UZBookingProvider
+﻿namespace CITR.UZBookingProvider
 {
     public class Ticket
     {

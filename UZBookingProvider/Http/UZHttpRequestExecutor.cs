@@ -1,8 +1,8 @@
 ﻿using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using UZBookingProvider.Http.Security;
+using CITR.UZBookingProvider.Http.Security;
 
-namespace UZBookingProvider.Http
+namespace CITR.UZBookingProvider.Http
 {
     class UZHttpRequestExecutor: BaseHttpRequestExecutor
     {

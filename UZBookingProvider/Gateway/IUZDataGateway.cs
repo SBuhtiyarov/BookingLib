@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using UZBookingProvider.Domain;
+using CITR.UZBookingProvider.Domain;
 
-namespace UZBookingProvider.Gateway
+namespace CITR.UZBookingProvider.Gateway
 {
     interface IUZDataGateway
     {

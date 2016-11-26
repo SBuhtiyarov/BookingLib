@@ -1,7 +1,7 @@
 ﻿using System;
-using UZBookingProvider.Http;
+using CITR.UZBookingProvider.Http;
 
-namespace UZBookingProvider.Gateway
+namespace CITR.UZBookingProvider.Gateway
 {
     //TODO: access level - public?
     class UZDataGatewaySlim: UZDataGateway, IUZDataGatewaySlim

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
-using UZBookingProvider.Domain;
+using CITR.UZBookingProvider.Domain;
 
-namespace UZBookingProvider.DataAccess
+namespace CITR.UZBookingProvider.DataAccess
 {
     class UZDomainTranslator: IUZDomainTranslator
     {

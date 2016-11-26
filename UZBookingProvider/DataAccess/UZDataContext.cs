@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UZBookingProvider.Domain;
-using UZBookingProvider.Gateway;
+using CITR.UZBookingProvider.Domain;
+using CITR.UZBookingProvider.Gateway;
 
-namespace UZBookingProvider.DataAccess
+namespace CITR.UZBookingProvider.DataAccess
 {
     class UZDataContext: IUZDataContext, IDisposable
     {

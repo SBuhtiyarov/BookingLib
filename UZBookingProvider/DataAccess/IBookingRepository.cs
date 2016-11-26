@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace UZBookingProvider.DataAccess
+namespace CITR.UZBookingProvider.DataAccess
 {
     interface IBookingRepository
     {

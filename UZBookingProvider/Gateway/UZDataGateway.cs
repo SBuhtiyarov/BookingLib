@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading.Tasks;
-using UZBookingProvider.Domain;
-using UZBookingProvider.Http;
-using UZBookingProvider.Http.Security;
+using CITR.UZBookingProvider.Domain;
+using CITR.UZBookingProvider.Http;
+using CITR.UZBookingProvider.Http.Security;
 
-namespace UZBookingProvider.Gateway
+namespace CITR.UZBookingProvider.Gateway
 {
     class UZDataGateway: IUZDataGateway, IDisposable
     {

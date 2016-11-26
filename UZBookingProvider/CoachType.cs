@@ -1,5 +1,5 @@
 ﻿
-namespace UZBookingProvider
+namespace CITR.UZBookingProvider
 {
     enum CoachType
     {

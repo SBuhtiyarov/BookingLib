@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using UZBookingProvider.Domain;
+using CITR.UZBookingProvider.Domain;
 
-namespace UZBookingProvider.DataAccess
+namespace CITR.UZBookingProvider.DataAccess
 {
     interface IUZDataContext
     {

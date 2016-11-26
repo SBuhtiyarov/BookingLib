@@ -1,6 +1,6 @@
 ﻿using System.Configuration;
 
-namespace UZBookingProvider.Gateway
+namespace CITR.UZBookingProvider.Gateway
 {
     public class UZAPIConfig
     {

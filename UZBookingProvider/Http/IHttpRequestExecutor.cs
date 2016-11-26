@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace UZBookingProvider.Http
+namespace CITR.UZBookingProvider.Http
 {
     interface IHttpRequestExecutor<T>
     {

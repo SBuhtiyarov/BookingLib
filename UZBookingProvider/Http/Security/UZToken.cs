@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
-namespace UZBookingProvider.Http.Security
+namespace CITR.UZBookingProvider.Http.Security
 {
     public class UZToken: IToken
     {

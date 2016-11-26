@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UZBookingProvider.Domain
+namespace CITR.UZBookingProvider.Domain
 {
     public class UZPlaces
     {

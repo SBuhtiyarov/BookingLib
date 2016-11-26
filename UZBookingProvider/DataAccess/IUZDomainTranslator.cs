@@ -1,6 +1,6 @@
-﻿using UZBookingProvider.Domain;
+﻿using CITR.UZBookingProvider.Domain;
 
-namespace UZBookingProvider.DataAccess
+namespace CITR.UZBookingProvider.DataAccess
 {
     interface IUZDomainTranslator
     {

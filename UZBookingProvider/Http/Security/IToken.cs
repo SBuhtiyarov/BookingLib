@@ -1,5 +1,5 @@
 ﻿
-namespace UZBookingProvider.Http.Security
+namespace CITR.UZBookingProvider.Http.Security
 {
     interface IToken
     {

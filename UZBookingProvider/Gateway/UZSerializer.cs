@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using UZBookingProvider.Domain;
+using CITR.UZBookingProvider.Domain;
 
-namespace UZBookingProvider.Gateway
+namespace CITR.UZBookingProvider.Gateway
 {
     class UZSerializer: IUZSerializer
     {

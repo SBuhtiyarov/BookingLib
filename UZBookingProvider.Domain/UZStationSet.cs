@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.Generic;
 
-namespace UZBookingProvider.Domain
+namespace CITR.UZBookingProvider.Domain
 {
     public class UZStationSet: UZSet
     {
