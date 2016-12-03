@@ -42,8 +42,13 @@ namespace CITR.UZBookingProvider.DataAccess
             _placesSets = new List<UZPlacesSet>();
         }
 
-        public Dictionary<CoachType, int> GetAvaliablePlacesCount(CoachType coachType) {
-            throw new NotImplementedException();
+        public async Task<Dictionary<string, int>> GetAvaliablePlacesCount(CoachType coachType) {
+            var trainSet = await _dataContext.GetTrains();
+            var placesCount = trainSet.Trains.SelectMany(train => train.AvaliableCoaches)
+                .GroupBy(coach => coach.TypeLetter)
+                    .ToDictionary(gcoach => gcoach.Key, gcoach => gcoach
+                        .Sum(it => it.PlacesCount));
+            return placesCount;
         }
 
         public async Task<Dictionary<CoachType, IEnumerable<int>>> GetAvaliablePlaces(CoachType coachType = CoachType.Any) {

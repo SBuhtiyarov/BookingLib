@@ -41,15 +41,12 @@ namespace CITR.UZBookingProvider.Http
             _serviceBaseAddress = serviceBaseAddress;
             _mediaType = "application/x-www-form-urlencoded";
             _httpClient = MakeHttpClient(serviceBaseAddress);
+            _httpClient.DefaultRequestHeaders.Accept.Add(MediaTypeWithQualityHeaderValue.Parse(_mediaType));
         }
 
         #endregion
 
         #region Methods: Protected
-
-        protected virtual void InitHttpClientHeaders() {
-            _httpClient.DefaultRequestHeaders.Accept.Add(MediaTypeWithQualityHeaderValue.Parse(_mediaType));
-        }
 
         protected virtual HttpClient MakeHttpClient(string serviceBaseAddress) {
             _cookieContainer = new CookieContainer();
@@ -79,18 +76,13 @@ namespace CITR.UZBookingProvider.Http
 
         #region Methods: Public
 
-        public virtual Task InitConnection() {
-            InitHttpClientHeaders();
-            return Task.FromResult(0);
-        }
-
-        public async Task<string> GetAsync(string addressSuffix) {
+        public async virtual Task<string> GetAsync(string addressSuffix) {
             var responseMessage = await _httpClient.GetAsync(addressSuffix);
             responseMessage.EnsureSuccessStatusCode();
             return await responseMessage.Content.ReadAsStringAsync();
         }
 
-        public async Task<string> PostAsync(string addressSuffix, FormUrlEncodedContent model) {
+        public async virtual Task<string> PostAsync(string addressSuffix, FormUrlEncodedContent model) {
             var responseMessage = await _httpClient.PostAsync(addressSuffix, model);
             return await responseMessage.Content.ReadAsStringAsync();
         }

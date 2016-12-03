@@ -5,7 +5,7 @@ namespace CITR.UZBookingProvider.DataAccess
 {
     interface IBookingRepository
     {
-        Dictionary<CoachType, int> GetAvaliablePlacesCount(CoachType coachType);
+        Task<Dictionary<string, int>> GetAvaliablePlacesCount(CoachType coachType);
 
         Task<Dictionary<CoachType, IEnumerable<int>>> GetAvaliablePlaces(CoachType coachType);
         

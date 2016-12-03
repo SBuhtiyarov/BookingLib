@@ -3,8 +3,10 @@ namespace CITR.UZBookingProvider.Http.Security
 {
     interface IToken
     {
-       string Value { get; }
+        bool IsInitialized { get; }
 
-       void DecodeToken(string encodeString);
+        string Value { get; }
+
+        void DecodeToken(string encodeString);
     }
 }

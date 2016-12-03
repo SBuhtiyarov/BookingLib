@@ -43,14 +43,26 @@
                     @Html.LabelFor(model => model.DepartureDate, htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.DepartureDate, new { htmlAttributes = new { @class = "form-control input-sm" } })
                     @Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "label label-danger" })
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
+
                     @Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control input-sm" } })
                     @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "label label-danger" })
                 </div>
+                <div class="col-md-3 col-md-push-2">
+                    <table class="table table-striped">
+                        @foreach (var p in ViewBag.PlacesCount) {
+                            <tr>
+                                <td><p>@p.Key</p></td>
+                                <td><p>@p.Value</p></td>
+                            </tr>
+                        }
+                    </table>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    </div>
             </div>
             <br />
             <div class="row">

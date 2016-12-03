@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CITR.UZBookingProvider;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -40,6 +41,20 @@ namespace WebApp.Models
 
         public TicketViewModel() {
             DepartureTime = DateTime.Today;
+            FirstName = "Иван";
+            LastName = "Говнов";
+        }
+
+        public Ticket GetTicket() {
+             return new Ticket {
+                StartingPointId = StartingPointId.ToString(),
+                DestinationPointId = DestinationPointId.ToString(),
+                StartingPointName = StartingPointName,
+                DestinationPointName = DestinationPointName,
+                DepartureDate = DepartureDate.ToString("dd.MM.yyy"),
+                FirstName = FirstName,
+                LastName = LastName
+            };
         }
     }
 }

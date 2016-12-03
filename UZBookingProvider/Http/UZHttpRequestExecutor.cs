@@ -1,6 +1,7 @@
 ﻿using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using CITR.UZBookingProvider.Http.Security;
+using System.Net.Http;
 
 namespace CITR.UZBookingProvider.Http
 {
@@ -13,8 +14,7 @@ namespace CITR.UZBookingProvider.Http
             _token = token;
         }
 
-        protected override void InitHttpClientHeaders() {
-            base.InitHttpClientHeaders();
+        private void InitHttpClientHeaders() {
             //TODO: decrease coupling
             _httpClient.DefaultRequestHeaders.Add("GV-Ajax", "1");
             _httpClient.DefaultRequestHeaders.Add("GV-Token", _token.Value);
@@ -27,10 +27,18 @@ namespace CITR.UZBookingProvider.Http
             _httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(new ProductHeaderValue("HttpClient", "1.0")));
         }
 
-        public override async Task InitConnection() {
+        private async Task InitConnection() {
             var mainPage = await GetAsync(_serviceBaseAddress);
             _token.DecodeToken(mainPage);
-            await base.InitConnection();
+            InitHttpClientHeaders();
         }
+
+        public async override Task<string> PostAsync(string addressSuffix, FormUrlEncodedContent model) {
+            if (!_token.IsInitialized) {
+                await InitConnection();
+            }
+            return await base.PostAsync(addressSuffix, model);
+        }
+
     }
 }

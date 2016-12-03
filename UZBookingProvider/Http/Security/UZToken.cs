@@ -7,11 +7,18 @@ namespace CITR.UZBookingProvider.Http.Security
         #region Fields: Private
 
         private string _value;
+        private bool _isInitialized;
         private readonly string _pattern = @"gaq.push....trackPageview...;(.*?).function .. .var";
 
         public string Value {
             get {
                 return _value;
+            }
+        }
+
+        public bool IsInitialized {
+            get {
+                return _isInitialized;
             }
         }
 
@@ -335,6 +342,7 @@ namespace CITR.UZBookingProvider.Http.Security
             var encodeSubString = match.Groups[1].Value;
             var decodeSubString = DecodeJj(encodeSubString);
             _value = decodeSubString.Split('\"')[3].Split('\"')[0].ToLower();
+            _isInitialized = true;
         }
 
         #endregion
