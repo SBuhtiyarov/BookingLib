@@ -50,7 +50,7 @@ namespace CITR.UZBookingProvider.Gateway
 
         #endregion
 
-            #region Methods: Public
+        #region Methods: Public
 
         public async Task<UZStationSet> GetStations(string request) {
             var requestURI = string.Format("{0}{1}", _apiConfig.StationsURI, request);

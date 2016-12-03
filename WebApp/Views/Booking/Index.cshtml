@@ -1,0 +1,78 @@
+﻿@model WebApp.Models.TicketViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="jumbotron">
+    <h2>Index</h2>
+</div>
+
+@using (Html.BeginForm("GetTrains", "Booking", FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
+    @Html.AntiForgeryToken()
+
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Fill trip information and check available trains
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.StartingPointName, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.StartingPointName, new { htmlAttributes = new { @class = "form-control input-lg", id = "StartingPointName" } })
+                    @Html.ValidationMessageFor(model => model.StartingPointName, "", new { @class = "label label-danger" })
+                    @Html.HiddenFor(model => model.StartingPointId, new { htmlAttributes = new { id = "StartingPointId" } })
+                </div>
+
+                <div class="col-md-1">
+                    <div>
+                        <img style="width: 72px" src="~/Content/img/train1.svg" />
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    @Html.LabelFor(model => model.DestinationPointName, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.DestinationPointName, new { htmlAttributes = new { @class = "form-control input-lg", id = "DestinationPointName" } })
+                    @Html.ValidationMessageFor(model => model.DestinationPointName, "", new { @class = "label label-danger" })
+                    @Html.HiddenFor(model => model.DestinationPointId, new { htmlAttributes = new { id = "DestinationPointId" } })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.DepartureDate, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.DepartureDate, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                    @Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "label label-danger" })
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    @Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label" })
+                    @Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control input-sm" } })
+                    @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "label label-danger" })
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="submit" value="Find" class="btn btn-primary btn-lg col-md-12" />
+                </div>
+            </div>
+        </div>
+       
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/jquery-ui-1.12.1.min.js")
+    @Styles.Render("~/Content/themes/base/all.css")
+    @Scripts.Render("~/Scripts/citr.js")
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var url = '@Url.Action("GetStations", "Booking")';
+            initLookupAutocomplete("StartingPointId", "StartingPointName", url);
+            initLookupAutocomplete("DestinationPointId", "DestinationPointName", url);
+        });
+    </script>
+}

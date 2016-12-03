@@ -9,6 +9,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UZBookingProvider", "UZBook
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UZBookingProvider.Domain", "UZBookingProvider.Domain\UZBookingProvider.Domain.csproj", "{5423AD78-46B6-4888-8540-7B804224F7CD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{DD4F800C-6EE7-4D3F-B76D-BD4D77FCBF29}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp.Tests", "WebApp.Tests\WebApp.Tests.csproj", "{2723D7A0-0083-46B4-9015-7A81B23DD57B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +31,14 @@ Global
 		{5423AD78-46B6-4888-8540-7B804224F7CD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5423AD78-46B6-4888-8540-7B804224F7CD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5423AD78-46B6-4888-8540-7B804224F7CD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD4F800C-6EE7-4D3F-B76D-BD4D77FCBF29}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD4F800C-6EE7-4D3F-B76D-BD4D77FCBF29}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD4F800C-6EE7-4D3F-B76D-BD4D77FCBF29}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD4F800C-6EE7-4D3F-B76D-BD4D77FCBF29}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2723D7A0-0083-46B4-9015-7A81B23DD57B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2723D7A0-0083-46B4-9015-7A81B23DD57B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2723D7A0-0083-46B4-9015-7A81B23DD57B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2723D7A0-0083-46B4-9015-7A81B23DD57B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

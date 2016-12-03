@@ -3,7 +3,7 @@ using CITR.UZBookingProvider.Http;
 
 namespace CITR.UZBookingProvider.Gateway
 {
-    //TODO: access level - public?
+    //TODO: access level - public? move accessible to dataContext?
     class UZDataGatewaySlim: UZDataGateway, IUZDataGatewaySlim
     {
         public UZDataGatewaySlim(UZAPIConfig config)

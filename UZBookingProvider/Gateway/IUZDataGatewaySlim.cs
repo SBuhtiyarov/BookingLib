@@ -4,7 +4,7 @@ using CITR.UZBookingProvider.Domain;
 
 namespace CITR.UZBookingProvider.Gateway
 {
-    public interface IUZDataGatewaySlim: IDisposable
+    interface IUZDataGatewaySlim: IDisposable
     {
         Task<UZStationSet> GetStations(string request);
     }
