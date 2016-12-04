@@ -8,7 +8,7 @@
     <h2>Index</h2>
 </div>
 
-@using (Html.BeginForm("GetTrains", "Booking", FormMethod.Post, new { @class = "form-horizontal", role = "form" })) {
+@using (Ajax.BeginForm("Places", "Booking", new AjaxOptions { UpdateTargetId = "places" }, new { id = "placesForm" })) {
     @Html.AntiForgeryToken()
 
     <div class="panel panel-primary">
@@ -25,7 +25,7 @@
                 </div>
 
                 <div class="col-md-1">
-                    <div>
+                    <div id="train">
                         <img style="width: 72px" src="~/Content/img/train1.svg" />
                     </div>
                 </div>
@@ -43,21 +43,12 @@
                     @Html.LabelFor(model => model.DepartureDate, htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.DepartureDate, new { htmlAttributes = new { @class = "form-control input-sm" } })
                     @Html.ValidationMessageFor(model => model.DepartureDate, "", new { @class = "label label-danger" })
-
+                    <br />
                     @Html.LabelFor(model => model.DepartureTime, htmlAttributes: new { @class = "control-label" })
                     @Html.EditorFor(model => model.DepartureTime, new { htmlAttributes = new { @class = "form-control input-sm" } })
                     @Html.ValidationMessageFor(model => model.DepartureTime, "", new { @class = "label label-danger" })
                 </div>
-                <div class="col-md-3 col-md-push-2">
-                    <table class="table table-striped">
-                        @foreach (var p in ViewBag.PlacesCount) {
-                            <tr>
-                                <td><p>@p.Key</p></td>
-                                <td><p>@p.Value</p></td>
-                            </tr>
-                        }
-                    </table>
-
+                <div class="col-md-3 col-md-push-2" id="places">
                 </div>
             </div>
             <div class="row">
@@ -78,13 +69,18 @@
 @section Scripts {
     @Scripts.Render("~/Scripts/jquery-ui-1.12.1.min.js")
     @Styles.Render("~/Content/themes/base/all.css")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
+    @Scripts.Render("~/scripts/jquery.validate.js")
+    @Scripts.Render("~/Scripts/jquery.validate.unobtrusive.js")
+    @Styles.Render("~/Content/animate.css")
     @Scripts.Render("~/Scripts/citr.js")
 
     <script type="text/javascript">
         $(document).ready(function () {
-            var url = '@Url.Action("GetStations", "Booking")';
+            var url = '@Url.Action("Stations", "Booking")';
             initLookupAutocomplete("StartingPointId", "StartingPointName", url);
             initLookupAutocomplete("DestinationPointId", "DestinationPointName", url);
+            initLoadingAnimation();
         });
     </script>
 }

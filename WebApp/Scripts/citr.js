@@ -26,3 +26,15 @@
         }
     });
 }
+
+function initLoadingAnimation() {
+    $("#placesForm").submit(function (e) {
+        if (e.result) {
+            $("#train").addClass("animated infinite wobble");
+        }
+    });
+}
+
+function disableLoadingAnimation() {
+    $("#train").removeClass("animated infinite wobble");
+}

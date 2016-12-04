@@ -17,7 +17,7 @@ namespace WebApp.Controllers
 
         public BookingController() {
             _api = new UZAPIConfig();
-            ViewBag.PlacesCount = new Dictionary<string, int>();
+            ViewBag.Places = new Dictionary<string, int>();
         }
 
         // GET: Booking
@@ -27,7 +27,7 @@ namespace WebApp.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> GetTrains(TicketViewModel model) {
+        public async Task<ActionResult> Places(TicketViewModel model) {
             if (model.StartingPointId == 0) {
                 ModelState.AddModelError("StartingPointName", "required field");
             }
@@ -37,14 +37,14 @@ namespace WebApp.Controllers
             if (ModelState.IsValid) {
                 var ticket = model.GetTicket();
                 using (UZBookingRepository repository = new UZBookingRepository(ticket, _api)) {
-                    var placesCount = await repository.GetAvaliablePlacesCount(CoachType.Any);
-                    ViewBag.PlacesCount = placesCount;
+                    var places = await repository.GetAvaliablePlacesCount(CoachType.Any);
+                    ViewBag.Places = places;
                 }
             }
-            return View("Index", model);
+            return PartialView("_Places");
         }
 
-        public async Task<ActionResult> GetStations(string term) {
+        public async Task<ActionResult> Stations(string term) {
             using(IUZDataGatewaySlim gateway = new UZDataGatewaySlim(_api)) {
                 var stationSet = await gateway.GetStations(term);
                 return Json(stationSet.Stations, JsonRequestBehavior.AllowGet);

@@ -1,0 +1,15 @@
+﻿<table class="table table-striped animated bounceInUp">
+    @foreach (var p in ViewBag.Places) {
+        <tr>
+            <td><p>@p.Key</p></td>
+            <td><p>@p.Value</p></td>
+        </tr>
+    }
+</table>
+
+<script type="text/javascript">
+    disableLoadingAnimation();
+</script>
+
+
+
