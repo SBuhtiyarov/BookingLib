@@ -8,7 +8,7 @@ namespace CITR.UZBookingProvider.Http.Security
 
         private string _value;
         private bool _isInitialized;
-        private readonly string _pattern = @"gaq.push....trackPageview...;(.*?).function .. .var";
+        private readonly string _pattern;
 
         public string Value {
             get {
@@ -331,7 +331,15 @@ namespace CITR.UZBookingProvider.Http.Security
             }
             return result;
         }
-        
+
+        #endregion
+
+        #region Constructors: Public
+
+        public UZToken(string pattern) {
+            _pattern = pattern;
+        }
+
         #endregion
 
         #region Methods: Public

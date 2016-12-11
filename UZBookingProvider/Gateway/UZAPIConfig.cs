@@ -15,6 +15,7 @@ namespace CITR.UZBookingProvider.Gateway
             CoachesURI = appSettings["UZCoaches"];
             PlacesURI = appSettings["UZPlaces"];
             CardURI = appSettings["UZCard"];
+            TokenPattern = appSettings["UZSecurityPattern"];
         }
 
         #endregion
@@ -35,6 +36,8 @@ namespace CITR.UZBookingProvider.Gateway
 
         public string CardURI { get; protected set; }
 
+        public string TokenPattern { get; protected set; }
+
         #endregion
 
         #region Constructors: Public
@@ -43,8 +46,8 @@ namespace CITR.UZBookingProvider.Gateway
             GetUZAPIFromConfiguration();
         }
 
-        public UZAPIConfig(string culture, string host, string stationsURI,
-            string trainsURI, string coachesURI, string placesURI, string cardURI) {
+        public UZAPIConfig(string culture, string host, string stationsURI, string trainsURI,
+            string coachesURI, string placesURI, string cardURI, string tokenPattern) {
             Culture = culture;
             Host = host;
             StationsURI = stationsURI;
@@ -52,6 +55,7 @@ namespace CITR.UZBookingProvider.Gateway
             CoachesURI = coachesURI;
             PlacesURI = placesURI;
             CardURI = cardURI;
+            TokenPattern = tokenPattern;
         }
 
         #endregion

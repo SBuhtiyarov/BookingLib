@@ -39,7 +39,8 @@ namespace CITR.UZBookingProvider.Gateway
             : this(config, new UZSerializer()) {
             //TODO: current culture realization dont work
             var baseURI = string.Format("{0}/{1}/", _apiConfig.Host, _apiConfig.Culture);
-            _requestExecutor = new UZHttpRequestExecutor(baseURI, new UZToken());
+            var token = new UZToken(config.TokenPattern);
+            _requestExecutor = new UZHttpRequestExecutor(baseURI, token);
        }
 
         public UZDataGateway(UZAPIConfig config, IUZSerializer serializer) {
