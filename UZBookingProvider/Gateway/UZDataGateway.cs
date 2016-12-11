@@ -37,10 +37,8 @@ namespace CITR.UZBookingProvider.Gateway
 
         public UZDataGateway(UZAPIConfig config)
             : this(config, new UZSerializer()) {
-            //TODO: current culture realization dont work
-            var baseURI = string.Format("{0}/{1}/", _apiConfig.Host, _apiConfig.Culture);
             var token = new UZToken(config.TokenPattern);
-            _requestExecutor = new UZHttpRequestExecutor(baseURI, token);
+            _requestExecutor = new UZHttpRequestExecutor(_apiConfig.Host, token);
        }
 
         public UZDataGateway(UZAPIConfig config, IUZSerializer serializer) {
@@ -53,7 +51,7 @@ namespace CITR.UZBookingProvider.Gateway
         #region Methods: Public
 
         public async Task<UZStationSet> GetStations(string request) {
-            var requestURI = string.Format("{0}{1}", _apiConfig.StationsURI, request);
+            var requestURI = string.Format("{0}{1}{2}", _apiConfig.Culture, _apiConfig.StationsURI, request);
             var response = await _requestExecutor.GetAsync(requestURI);
             var stationSet = _serializer.DeserializeResponse<UZStationSet>(response);
             return stationSet;
@@ -61,7 +59,8 @@ namespace CITR.UZBookingProvider.Gateway
 
         public async Task<UZTrainSet> GetTrains(UZTrainsRequest request) {
             var serializedRequest = _serializer.SerializeRequest(request);
-            var response = await _requestExecutor.PostAsync(_apiConfig.TrainsURI, serializedRequest);
+            var requestedUri = string.Format("{0}{1}", _apiConfig.Culture, _apiConfig.TrainsURI);
+            var response = await _requestExecutor.PostAsync(requestedUri, serializedRequest);
             var trainSet = _serializer.DeserializeResponse<UZTrainSet>(response);
             trainSet.OwnerRequest = request;
             return trainSet;
@@ -69,7 +68,8 @@ namespace CITR.UZBookingProvider.Gateway
 
         public async Task<UZCoachSet> GetCoaches(UZCoachesRequest request) {
             var serializedRequest = _serializer.SerializeRequest(request);
-            var response = await _requestExecutor.PostAsync(_apiConfig.CoachesURI, serializedRequest);
+            var requestedUri = string.Format("{0}{1}", _apiConfig.Culture, _apiConfig.CoachesURI);
+            var response = await _requestExecutor.PostAsync(requestedUri, serializedRequest);
             var coachSet = _serializer.DeserializeResponse<UZCoachSet>(response);
             coachSet.OwnerRequest = request;
             return coachSet;
@@ -77,7 +77,8 @@ namespace CITR.UZBookingProvider.Gateway
 
         public async Task<UZPlacesSet> GetPlaces(UZPlacesRequest request) {
             var serializedRequest = _serializer.SerializeRequest(request);
-            var response = await _requestExecutor.PostAsync(_apiConfig.PlacesURI, serializedRequest);
+            var requestedUri = string.Format("{0}{1}", _apiConfig.Culture, _apiConfig.PlacesURI);
+            var response = await _requestExecutor.PostAsync(requestedUri, serializedRequest);
             var placesSet = _serializer.DeserializeResponse<UZPlacesSet>(response);
             placesSet.OwnerRequest = request;
             return placesSet;
@@ -85,7 +86,8 @@ namespace CITR.UZBookingProvider.Gateway
 
         public async Task<UZCardSet> AddPlaceToCard(UZCardRequest request) {
             var serializedRequest = _serializer.SerializeRequest(request);
-            var response =  await _requestExecutor.PostAsync(_apiConfig.CardURI, serializedRequest);
+            var requestedUri = string.Format("{0}{1}", _apiConfig.Culture, _apiConfig.CardURI);
+            var response =  await _requestExecutor.PostAsync(requestedUri, serializedRequest);
             var cardSet = _serializer.DeserializeResponse<UZCardSet>(response);
             cardSet.OwnerRequest = request;
             cardSet.Cookies = _requestExecutor.Cookies;

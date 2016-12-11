@@ -8,8 +8,8 @@ namespace CITR.UZBookingProvider.Gateway
     {
         public UZDataGatewaySlim(UZAPIConfig config)
             : base(config, new UZSerializer()) {
-            var baseURI = string.Format("{0}/{1}", _apiConfig.Host, _apiConfig.Culture);
-            _requestExecutor = new BaseHttpRequestExecutor(baseURI);
+            //var baseURI = string.Format("{0}/{1}", _apiConfig.Host, _apiConfig.Culture);
+            _requestExecutor = new BaseHttpRequestExecutor(_apiConfig.Host);
         }
     }
 }
